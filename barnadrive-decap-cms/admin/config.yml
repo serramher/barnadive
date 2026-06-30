@@ -1,0 +1,108 @@
+backend:
+  name: github
+  repo: TU_USUARIO/barnadrive
+  branch: main
+
+media_folder: "img"
+public_folder: "/img"
+
+locale: "es"
+
+collections:
+  - name: "productos"
+    label: "Productos"
+    folder: "data"
+    extension: "json"
+    format: "json"
+    create: false
+    slug: "products"
+    files:
+      - label: "Lista de productos"
+        name: "products"
+        file: "data/products.json"
+        fields:
+          - label: "Productos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.cat}}"
+            fields:
+              - { label: "ID", name: "id", widget: "number" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - label: "Categoría"
+                name: "cat"
+                widget: "select"
+                options:
+                  - { label: "Coches", value: "coches" }
+                  - { label: "Grabación", value: "grabacion" }
+                  - { label: "Tecnología", value: "tech" }
+                  - { label: "Hogar", value: "hogar" }
+                  - { label: "Deporte", value: "deporte" }
+              - { label: "Emoji (si no hay foto)", name: "emoji", widget: "string" }
+              - label: "Foto del producto"
+                name: "img"
+                widget: "image"
+                required: false
+                hint: "Sube una foto o deja vacío para usar el emoji"
+              - { label: "Descripción corta (card)", name: "desc", widget: "string" }
+              - label: "Etiqueta"
+                name: "badge"
+                widget: "select"
+                options:
+                  - { label: "Probado", value: "Probado" }
+                  - { label: "Mi equipo", value: "Mi equipo" }
+                  - { label: "Top pick", value: "Top pick" }
+                  - { label: "Nuevo", value: "Nuevo" }
+              - { label: "Link de Amazon (afiliado)", name: "url", widget: "string" }
+              - { label: "Tagline (cabecera de detalle)", name: "tagline", widget: "string" }
+              - label: "Puntos positivos"
+                name: "pros"
+                widget: "list"
+                field: { label: "Punto", name: "item", widget: "string" }
+              - { label: "Veredicto (tu opinión personal)", name: "verdict", widget: "text" }
+              - { label: "Descripción larga", name: "longDesc", widget: "text", required: false, hint: "Separa párrafos dejando una línea en blanco" }
+
+  - name: "noticias"
+    label: "Noticias"
+    folder: "data"
+    extension: "json"
+    format: "json"
+    create: false
+    slug: "news"
+    files:
+      - label: "Lista de noticias"
+        name: "news"
+        file: "data/news.json"
+        fields:
+          - label: "Noticias"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.date}}"
+            fields:
+              - { label: "ID", name: "id", widget: "number" }
+              - { label: "Título", name: "title", widget: "string" }
+              - label: "Categoría"
+                name: "tag"
+                widget: "select"
+                options:
+                  - { label: "Motor", value: "motor" }
+                  - { label: "F1", value: "formula" }
+                  - { label: "Eléctrico", value: "ev" }
+                  - { label: "Tech", value: "tech" }
+              - label: "Etiqueta visible"
+                name: "tagLabel"
+                widget: "select"
+                options:
+                  - { label: "Motor", value: "Motor" }
+                  - { label: "F1", value: "F1" }
+                  - { label: "Eléctrico", value: "Eléctrico" }
+                  - { label: "Tech", value: "Tech" }
+              - { label: "Fecha (ej: 30 Jun 2026)", name: "date", widget: "string" }
+              - { label: "Resumen (aparece en portada)", name: "summary", widget: "text" }
+              - { label: "Artículo completo", name: "body", widget: "text", required: false, hint: "Separa párrafos dejando una línea en blanco" }
+              - label: "Secciones adicionales"
+                name: "sections"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Subtítulo", name: "h", widget: "string" }
+                  - { label: "Párrafo", name: "p", widget: "text" }
